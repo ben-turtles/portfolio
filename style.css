@@ -2,95 +2,227 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans');
 
 :root {
-    --bg-color: #080416;
-    --highlight-color: #644ef2;
+    --bg-color-default: #0e0e0e;
+    --bg-color-secondary: #071c2a;
+    --navbar-color: #435cdb;
+    --highlight-color: #ffffff;
+    --dark-highlight-color: #969696;
+
+    --accent-color: #b1cef7;
+    --accent-size: 1.5px;
+    --glyph-color: var(--highlight-color);
+    --project-box-color: #201f1f;
+    --project-thumbnail-ratio: 16/9;
 
     font-family: "PT Sans", sans-serif;
-    color: #ffffff
+    color: var(--glyph-color)
 }
 
+/* Defaults */
 body {
-    background-color: var(--bg-color);
+    background-color: var(--bg-color-default);
+    margin: 0;
+    padding: 0;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+* {
+    margin: 0;
+    padding: 0;
 }
 
-.main {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 920px;
-    padding-left: 32px;
-    padding-right: 32px;
-    box-sizing: border-box;
-    margin-top: 176px; 
+
+/* Reusable Classes */
+.hoverable:hover {
+    /* Generated from https://angel-rs.github.io/css-color-filter-generator/ */
+    filter: brightness(0) saturate(100%) invert(71%) sepia(74%) saturate(988%) hue-rotate(140deg) brightness(108%) contrast(102%);;
 }
+
 
 /* Navigation Bar */
 .navbar {
-    background-color: #ffffff;
-    overflow: hidden;
-    background-color: var(--highlight-color);
-    position: fixed;
-    display: flex;
-    justify-content: space-between;
+    background-color: var(--navbar-color);
+    position: sticky;
+    white-space: nowrap;
+    z-index: 100;
     top: 0;
-    left: 0;
+    overflow: hidden;
+    text-align: left;
     padding-left: 32px;
     padding-right: 32px;
-    box-sizing: border-box;
-    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .navbar-title {
+    margin-top: 8px;
+    margin-bottom: 8px; 
+    display: flex;
+}
+.navbar-buttons {
     /* background-color: aqua; */
-    vertical-align: middle;
-    width: fit-content;
-    height: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.navbar-buttons a, .navbar-buttons div {
+    display: inherit;
+    align-items: inherit;
+    gap: 10px;
+}
+
+
+/* Main Page */
+.main {
+    overflow: hidden;
+    /* justify-content: space-between; */
+    /* top: 0;
+    left: 0; */
+    /* padding-left: 32px;
+    padding-right: 32px; */
+    /* padding-top: 100px; */
+    /* box-sizing: content-box;
+    width: 100%;
+    margin-top: 80px;
+    z-index: 1; */
+}
+.main div {
+    /* padding-left: 128px;
+    padding-right: 128px; */
+    text-align: center;
+    /* margin: 64px; */
+}
+/* Main Top Page */
+.main-top {
+    padding-left: 64px;
+    padding-right: 64px;
+    padding-top: 32px;
+    padding-bottom: 64px;
+    background-color: var(--bg-color-default);
     display: flex;
     flex-direction: column;
-    align-self: center;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    gap: 32px;
+    /* margin: 0; */
+    /* padding: 64px; */
+    /* z-index: 0; */
 }
-.navbar-title h1, h4 {
-    /* background-color: #000000; */
-     /* font-size: 1.875rem;
-    line-height: 2.25rem */
-    vertical-align: center;
-    margin: 0;
+.main-header {
     padding: 0;
+    color: var(--accent-color);
 }
-.navbar-options {
-    /* background-color: aqua; */
-    padding-top: 16px;
-    padding-bottom: 16px;
-    text-align: right;
-    vertical-align: top;
-    align-items: center;
-    width: fit-content;
-    display: flex;
-    gap:20px
-    /* text-align: right; */
+.main-header h1 {
+    font-size: 2.5rem;
 }
-.navbar-option {
-    /* background-color: aquamarine; */
-    vertical-align: middle;
-    width: fit-content;
-    height: fit-content;
+.main-header div {
+    background-color: var(--accent-color);
+    height: var(--accent-size);
+    margin-left: 64px;
+    margin-right: 64px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.main-project-box {
+    background-color: green;
+}
+
+/* Main About Page */
+.main-about {
+    padding-top: 64px;
+    padding-bottom: 64px;
+    background-color: var(--bg-color-secondary);
+}
+
+/* Project Boxes */
+.project-box {
+    background-color: var(--project-box-color);
+    padding: 30px;
+    overflow: hidden;
+    color: var(--accent-color);
     display: flex;
+    justify-content: flex-end;
+    flex-grow: 50;
     align-items: center;
+    /* flex-wrap: wrap; */
+    gap: 50px;
+    margin-bottom: 50px;
+}
+/* Project Thumbnail Div */
+.project-thumbnail {
+    flex-shrink: 1;
+    aspect-ratio: var(--project-thumbnail-ratio);
+}
+.project-thumbnail a {
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* padding-left: 20px; */
+    border-width: 6px;
+    border-color: var(--accent-color);
+    border-style: solid;
+}
+.project-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+/* Project Info Div */
+.project-info {
+    /* background-color: green; */
+    width: 50%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: flex-start;
+    flex-grow: 1;
+    gap: 30px;
+}
+.project-info-header {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
     gap: 10px;
-    padding: 0;
-    margin:0;
-    text-decoration: none;
 }
-.gap-plus {
-    /* gap: 12px */
-}
-.navbar-icon {
-    /* background-color: yellow; */
-    /* margin: 0 */
-}
-.navbar-text {
+.project-info a {
     /* background-color: red; */
-    margin: 0;
+    text-align: left;
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-decoration-thickness: var(--accent-size);
+}
+.project-info p {
+    font-size: 1.5rem;
+    text-align: left;
+}
+
+
+/* Tags */
+.tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.tag {
+    background-color: black;
+    width: fit-content;
+    font-size: 1.25rem;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 6px;
     color: #ffffff;
-    text-decoration: none;
+}
+.tag[type="type"] {
+    background-color: #1b7524;
+}
+.tag[type="language"] {
+    background-color: #a44144;
+}
+.tag[type="software"] {
+    background-color: #244085;
 }
